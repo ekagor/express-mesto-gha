@@ -1,4 +1,4 @@
-// const { default: mongoose } = require('mongoose');
+const { default: mongoose } = require('mongoose');
 const User = require('../models/user');
 
 module.exports.getUsers = (req, res) => {
@@ -14,7 +14,7 @@ module.exports.getUserById = (req, res) => {
       res.send(user);
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err instanceof mongoose.Error.CastError) {
         res.status(400).send({ message: `Некорректный _id: ${req.params.userId}` });
       } else if (err.name === 'DocumentNotFoundError') {
         res.status(404).send({ message: `Пользователь по указанному _id: ${req.params.userId} не найден.` });
