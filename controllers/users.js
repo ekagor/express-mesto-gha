@@ -1,4 +1,4 @@
-const { default: mongoose } = require('mongoose');
+// const { default: mongoose } = require('mongoose');
 const User = require('../models/user');
 
 module.exports.getUsers = (req, res) => {
