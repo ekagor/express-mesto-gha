@@ -49,7 +49,7 @@ module.exports.likeCard = (req, res) => {
         }
         res.send(card);
       })
-      .catch(() => res.status(404).send({ message: 'Карточка не найдена.' }));
+      .catch(() => res.status(500).send({ message: 'На сервере произошла ошибка.' }));
   } else {
     res.status(400).send({ message: 'Некорректный _id карточки' });
   }
@@ -66,7 +66,7 @@ module.exports.dislikeCard = (req, res) => {
         }
         res.send(card);
       })
-      .catch(() => res.status(404).send({ message: 'Карточка не найдена.' }));
+      .catch(() => res.status(500).send({ message: 'На сервере произошла ошибка.' }));
   } else {
     res.status(400).send({ message: 'Некорректный _id карточки' });
   }
