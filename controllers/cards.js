@@ -4,13 +4,13 @@ module.exports.addCard = (req, res) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
-      res.send(card);
+      res.status(201).send(card);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.name === "ValidationError") {
         res.status(400).send({ message: err.message });
       } else {
-        res.status(500).send({ message: 'На сервере произошла ошибка' });
+        res.status(500).send({ message: "На сервере произошла ошибка" });
       }
     });
 };
@@ -34,7 +34,7 @@ module.exports.deleteCard = (req, res) => {
       })
       .catch(() => res.status(404).send({ message: 'Карточка не найдена.' }));
   } else {
-    res.status(400).send({ message: 'Некорректный _id карточки' });
+    res.status(500).send({ message: 'На сервере произошла ошибка' });
   }
 };
 
@@ -51,7 +51,7 @@ module.exports.likeCard = (req, res) => {
       })
       .catch(() => res.status(404).send({ message: 'Карточка не найдена.' }));
   } else {
-    res.status(400).send({ message: 'Некорректный _id карточки' });
+    res.status(500).send({ message: 'На сервере произошла ошибка' });
   }
 };
 
@@ -68,6 +68,6 @@ module.exports.dislikeCard = (req, res) => {
       })
       .catch(() => res.status(404).send({ message: 'Карточка не найдена.' }));
   } else {
-    res.status(400).send({ message: 'Некорректный _id карточки' });
+    res.status(500).send({ message: 'На сервере произошла ошибка' });
   }
 };
